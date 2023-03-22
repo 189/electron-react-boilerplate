@@ -11,9 +11,9 @@
 import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
-import { fork } from 'child_process';
 import log from 'electron-log';
 
+import loadDll from './server';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -95,12 +95,17 @@ const createWindow = async () => {
       mainWindow.show();
     }
 
-    const cp = fork(path.join(__dirname, './server.ts'));
-    cp.on('message', (data) => {
-      mainWindow?.webContents.send('ipc-message', data);
-    });
-    cp.on('error', (err) => console.log(err));
-    cp.on('close', (code) => console.log(code));
+    // const cp = fork(path.join(__dirname, './server.ts'));
+    // cp.on('message', (data) => {
+    //   mainWindow?.webContents.send('ipc-message', data);
+    // });
+    // cp.on('error', (err) => console.log(err));
+    // cp.on('close', (code) => console.log(code));
+    const lib = loadDll(getAssetPath('addons/koffi.dll'));
+    const func_1 = lib.func('func_1', 'int', []);
+    const func_2 = lib.func('func_2', 'int', ['int']);
+    mainWindow.webContents.send('ipc-message', func_1());
+    mainWindow.webContents.send('ipc-message', func_2(20));
   });
 
   mainWindow.on('closed', () => {

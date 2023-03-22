@@ -9,6 +9,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/no-import-module-exports': 'off',
     camelcase: 'off',
+    'no-console': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

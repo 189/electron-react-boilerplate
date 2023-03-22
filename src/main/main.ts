@@ -94,6 +94,13 @@ const createWindow = async () => {
     } else {
       mainWindow.show();
     }
+
+    const cp = fork(path.join(__dirname, './server.ts'));
+    cp.on('message', (data) => {
+      mainWindow?.webContents.send('ipc-message', data);
+    });
+    cp.on('error', (err) => console.log(err));
+    cp.on('close', (code) => console.log(code));
   });
 
   mainWindow.on('closed', () => {
@@ -137,7 +144,3 @@ app
     });
   })
   .catch(console.log);
-
-const cp = fork(path.join(__dirname, './server.ts'));
-cp.on('error', (err) => console.log(err));
-cp.on('close', (code) => console.log(code));

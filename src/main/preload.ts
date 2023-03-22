@@ -21,6 +21,10 @@ const electronHandler = {
     once(channel: Channels, func: (...args: unknown[]) => void) {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
     },
+
+    onIPCMessage: (callback: any) => {
+      ipcRenderer.on('ipc-message', callback);
+    },
   },
 };
 

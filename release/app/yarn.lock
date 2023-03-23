@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"koffi@^2.3.9":
-  "integrity" "sha512-X861mxFeBX/AUI1o0dNU2a9vK/E63gyd+4BU+jtPQDkk7ddJ7jVfBSFh4SpDXoOegvFc4JiO19MaG9mljJXh3w=="
-  "resolved" "https://registry.npmmirror.com/koffi/-/koffi-2.3.9.tgz"
-  "version" "2.3.9"
+koffi@^2.3.9:
+  version "2.3.9"
+  resolved "https://registry.npmmirror.com/koffi/-/koffi-2.3.9.tgz"
+  integrity sha512-X861mxFeBX/AUI1o0dNU2a9vK/E63gyd+4BU+jtPQDkk7ddJ7jVfBSFh4SpDXoOegvFc4JiO19MaG9mljJXh3w==
